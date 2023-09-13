@@ -1,14 +1,20 @@
-// import { create } from 'json-server';
-import { createStore, combineReducers } from 'redux';
-import { composeWithDevTools } from 'redux-devtools-extension';
+
+import { configureStore, getDefaultMiddleware } from '@reduxjs/toolkit';
+import logger from 'redux-logger';
 import counterReducer from './counter/counter-reducer';
 
-// общий стейт
-const rootReducer = combineReducers({
-  counter: counterReducer,
-});
+const middleware = [...getDefaultMiddleware(), logger]
 
-// 1 шаг инциализировали стор
-const store = createStore(rootReducer, composeWithDevTools());
+
+// проверить какой сечас режим - продакшин или разработка  
+// console.log(process.env.NODE_ENV);
+
+const store = configureStore({
+  reducer: {
+    counter: counterReducer,
+    middleware,
+  },
+  devTools: process.env.NODE_ENV === 'development',
+});
 
 export default store;
