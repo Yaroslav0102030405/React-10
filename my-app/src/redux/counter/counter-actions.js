@@ -1,4 +1,4 @@
-import actionTypes from "./counter-types";
+// import actionTypes from "./counter-types";
 import { createAction } from '@reduxjs/toolkit';
 
 // export const increment = value => ({
@@ -10,9 +10,10 @@ import { createAction } from '@reduxjs/toolkit';
 //   type: actionTypes.DECREMENT,
 //   payload: value,
 // });
+// const INCREMENT = 'counter/Increment';
+// const DECREMENT = 'counter/Decrement';
 
+export const increment = createAction('counter/Increment');
+export const decrement = createAction('counter/Decrement');
 
-
-export const increment = createAction(actionTypes.INCREMENT);
-export const decrement = createAction(actionTypes.DECREMENT);
- 
+export default { increment, decrement };
